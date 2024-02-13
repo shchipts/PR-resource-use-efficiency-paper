@@ -1,6 +1,6 @@
-# Resource Use Efficiency in Global Phosphate Rock Production
+# Resource use efficiency in global phosphate rock production
 
-Contains routines for paper "Resource Use Efficiency in Global Phosphate Rock Production".
+Contains routines for paper "Resource use efficiency in global phosphate rock production".
 
 Based on ["Global dataset on phosphate mining and beneficiation"](https://github.com/shchipts/phosphate-rock.git).
 
