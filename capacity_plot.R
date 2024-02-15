@@ -14,16 +14,43 @@ library(reshape2)
 library(tidyr)
 
 
-plot_recovery <- function(data_company, data_world) {
+plot_capacity <- function(data_company, data_world, xmax_) {
   
   ymax <- data_company %>% pull(y) %>% max() + 0.2
   
+  data_company <- data_company %>%
+    mutate(
+      variable = case_when(
+        variable == "Capacity" ~ "bold(Volume)",
+        TRUE ~ "bold(Value*','~\"%\"*P[2]*O[5])"))
+  data_world <- data_world %>%
+    mutate(
+      variable = case_when(
+        variable == "Capacity" ~ "bold(Volume)",
+        TRUE ~ "bold(Value*','~\"%\"*P[2]*O[5])"))
+  data_company$variable = factor(
+    data_company$variable, 
+    levels = c("bold(Volume)", "bold(Value*','~\"%\"*P[2]*O[5])"))
+  data_world$variable = factor(
+    data_world$variable, 
+    levels = c("bold(Volume)", "bold(Value*','~\"%\"*P[2]*O[5])"))
+  
   area <- data_world %>%
     group_by(variable) %>%
-    summarise(xmax = min(xmin))
+    summarise(xmax = min(xmin)) %>%
+    ungroup() %>%
+    mutate(xmin = 0) %>%
+    as.data.frame() %>%
+    rbind(
+      data_world %>%
+        group_by(variable) %>%
+        summarise(xmin = max(xmax)) %>%
+        ungroup() %>%
+        mutate(xmax = xmax_) %>%
+        as.data.frame())
   
   plot <- ggplot() +
-    labs(x = "Recovery") +
+    labs(x = "Million tonnes") +
     theme_ipsum(base_family = "Segoe UI") +
     theme(
       aspect.ratio = 1,
@@ -65,7 +92,7 @@ plot_recovery <- function(data_company, data_world) {
       plot.margin = margin(t = 0, r = 0, b = 0, l = 0)) +
     geom_rect_pattern(
       data = area,
-      aes(xmin = 0, xmax = xmax, ymin = 0, ymax = ymax),
+      aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
       fill = "white",
       pattern_fill = "grey70",
       pattern_color = "grey70",
@@ -93,12 +120,10 @@ plot_recovery <- function(data_company, data_world) {
       aes(x = mid, y = y - 0.5, label = ylabel),
       size = 6,
       fontface = "bold",
-      hjust = 0.35, 
+      hjust = 0.1, 
       vjust = -0.8) +
     scale_x_continuous(
-      limits = c(0, 1),
-      labels = scales::percent_format(accuracy = 1),
-      expand = expansion(mult = c(0, 0), add = c(0, 0.03))) +
+      expand = expansion(mult = c(0, 0), add = c(0.1, 0))) +
     scale_y_continuous(
       breaks = data_company %>% pull(y) - 0.5,
       labels = data_company %>% pull(Label),
@@ -118,10 +143,10 @@ plot_recovery <- function(data_company, data_world) {
         "#276419"),
       labels = data_world %>% pull(range) %>% unique()) +
     guides(fill = guide_legend(byrow = TRUE)) +
-    facet_grid(. ~ variable)
+    facet_grid(. ~ variable, labeller = label_parsed)
   
   png(
-    filename = "bin/recoveries.jpg",
+    filename = "bin/capacities.jpg",
     units = "in",
     width = 12,
     height = 16,
@@ -130,7 +155,6 @@ plot_recovery <- function(data_company, data_world) {
   print(plot)
   dev.off()
 }
-
 
 data <- mining_complexes %>%
   select(Name, Capacity, Country) %>%
@@ -144,41 +168,30 @@ data <- mining_complexes %>%
       Name %in% c("Haikou") ~ "YPH-Haikou (China)",
       TRUE ~ NA)) %>%
   left_join(
-    recovery_mass %>% rename(Mass = Value) %>% select(Name, Mass), 
-    by = c("Name")) %>%
-  left_join(
-    recovery_mineral %>% rename(Mineral = Value) %>% select(Name, Mineral), 
-    by = c("Name")) %>%
-  left_join(
     PR %>% rename(G_PR = Value) %>% select(Name, G_PR), 
     by = c("Name")) %>%
   mutate(Capacity_Content = Capacity * G_PR / 100) %>%
-  mutate(weight = Capacity_Content / sum(Capacity_Content, na.rm = TRUE)) %>%
   select(-c(G_PR, Country)) %>%
-  melt(id.vars = c("Name", "Label", "Capacity", "Capacity_Content", "weight"))
+  mutate(Capacity_Content_2 = Capacity_Content) %>%
+  melt(id.vars = c("Name", "Label", "Capacity_Content_2"))
 
+xmax <- data %>% pull(value) %>% max(na.rm = TRUE)
 
 companies <- data %>%
   filter(!is.na(Label)) %>%
   group_by(Label, variable) %>%
   group_modify(~ {
-    
-    ws <- .x %>% pull(weight)
-    
-    return (.x %>%
-              summarise(
-                Capacity = sum(Capacity),
-                Capacity_Content = sum(Capacity_Content),
-                weight = sum(weight),
-                mid = weighted.mean(value, ws)))
+    .x %>%
+      summarise(
+        Capacity_Content = sum(Capacity_Content_2),
+        mid = mean(value)) 
   }) %>%
   ungroup() %>%
-  as.data.frame() %>%
   arrange(Capacity_Content) %>%
   group_by(variable) %>%
   mutate(
     y = row_number(),
-    ylabel = scales::percent_format(accuracy = 1)(mid)) %>%
+    ylabel = format(round(mid, 1), nsmall = 1)) %>%
   ungroup() %>%
   as.data.frame()
 
@@ -186,21 +199,19 @@ world <- data %>%
   group_by(variable) %>%
   group_modify(~ {
     
-    ws <- .x %>% pull(weight)
-    
     xs <- .x %>%
       summarise(
-        q0 = weighted.quantile(value, ws, probs = c(0)),
-        q10 = weighted.quantile(value, ws, probs = c(0.1)),
-        q20 = weighted.quantile(value, ws, probs = c(0.2)),
-        q30 = weighted.quantile(value, ws, probs = c(0.3)),
-        q40 = weighted.quantile(value, ws, probs = c(0.4)),
-        q50 = weighted.quantile(value, ws, probs = c(0.5)),
-        q60 = weighted.quantile(value, ws, probs = c(0.6)),
-        q70 = weighted.quantile(value, ws, probs = c(0.7)),
-        q80 = weighted.quantile(value, ws, probs = c(0.8)),
-        q90 = weighted.quantile(value, ws, probs = c(0.9)),
-        q100 = weighted.quantile(value, ws, probs = c(1))) %>%
+        q0 = quantile(value, probs = c(0), na.rm = TRUE),
+        q10 = quantile(value, probs = c(0.1), na.rm = TRUE),
+        q20 = quantile(value, probs = c(0.2), na.rm = TRUE),
+        q30 = quantile(value, probs = c(0.3), na.rm = TRUE),
+        q40 = quantile(value, probs = c(0.4), na.rm = TRUE),
+        q50 = quantile(value, probs = c(0.5), na.rm = TRUE),
+        q60 = quantile(value, probs = c(0.6), na.rm = TRUE),
+        q70 = quantile(value, probs = c(0.7), na.rm = TRUE),
+        q80 = quantile(value, probs = c(0.8), na.rm = TRUE),
+        q90 = quantile(value, probs = c(0.9), na.rm = TRUE),
+        q100 = quantile(value, probs = c(1), na.rm = TRUE)) %>%
       melt() %>%
       pull(value)
     
@@ -225,4 +236,4 @@ world <- data %>%
   ungroup() %>%
   as.data.frame()
 
-plot_recovery(companies, world)
+plot_capacity(companies, world, xmax)

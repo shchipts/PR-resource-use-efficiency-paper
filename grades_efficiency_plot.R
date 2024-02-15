@@ -141,11 +141,10 @@ plot_efficiency <- function(data_company, data_world, xmax_) {
 
 
 data <- mining_complexes %>%
-  filter(Status == "operational") %>%
   select(Name, Capacity, Country) %>%
   mutate(
     Label = case_when(
-      Name %in% c("Khouribga", "Gantour", "Boucraa") ~ "OCP (Morocco)",
+      Name %in% c("Khouribga", "Gantour", "Boucraa", "Meskala") ~ "OCP (Morocco)",
       Name %in% c("Kola") ~ "PhosAgro (Russia)*",
       Name %in% c("Bayovar", "Florida") ~ "Mosaic (US, Peru)",
       Name %in% c("Tapira", "Araxa/Patrocinio", "Catalao", "Cajati") ~ "Mosaic (Brazil)*",

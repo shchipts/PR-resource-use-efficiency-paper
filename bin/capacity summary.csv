@@ -1,0 +1,99 @@
+"Id","Region","Capacity","Capacity_Content","frac_Capacity","frac_Capacity_Content","Category","frac_Region_Capacity_Content"
+"East Asia","East Asia",130,37.5859,0.443928425078541,0.426355094709082,"Region (fractions excl. non-operational)",1
+"Africa","Africa",71.49,22.367864,0.244126485452807,0.25372953086556,"Region (fractions excl. non-operational)",1
+"West Asia","West Asia",26.32,8.3944,0.0898784319082093,0.0952217508966373,"Region (fractions excl. non-operational)",1
+"North America","North America",26.13,7.399915,0.0892296134407868,0.0839408251675271,"Region (fractions excl. non-operational)",1
+"Eastern Europe And Central Asia","Eastern Europe And Central Asia",18.9,6.0695,0.0645403633383418,0.0688492825058539,"Region (fractions excl. non-operational)",1
+"Latin America","Latin America",15.3,4.9705,0.0522469607977052,0.0563827924368312,"Region (fractions excl. non-operational)",1
+"Oceania","Oceania",2.2,0.5984,0.00751263488594454,0.0067879414534151,"Region (fractions excl. non-operational)",1
+"West Europe","West Europe",1,0.389,0.0034148340390657,0.00441261568412178,"Region (fractions excl. non-operational)",1
+"South Asia","South Asia",1.5,0.38085,0.00512225105859855,0.00432016628097116,"Region (fractions excl. non-operational)",1
+"sedimentary",NA,268.44,79.057749,0.916678049446797,0.896790393801448,"Rock type (fractions excl. non-operational)",NA
+"igneous",NA,24.4,9.09858,0.0833219505532031,0.103209606198552,"Rock type (fractions excl. non-operational)",NA
+"China","East Asia",124.5,35.8809,0.42514683786368,0.407014452700271,"Country (fractions excl. non-operational)",0.954637244285756
+"Morocco","Africa",42.2,13.2159,0.144105996448573,0.149914364061144,"Country (fractions excl. non-operational)",0.590843184668862
+"United States","North America",26.13,7.399915,0.0892296134407868,0.0839408251675271,"Country (fractions excl. non-operational)",1
+"Russia","Eastern Europe And Central Asia",12.2,4.7175,0.0416609752766016,0.0535128907193946,"Country (fractions excl. non-operational)",0.777246890188648
+"Saudi Arabia","West Asia",10.32,3.3024,0.035241087283158,0.0374607250263336,"Country (fractions excl. non-operational)",0.393405127227676
+"Jordan","West Asia",9.5,3.04,0.0324409233711242,0.034484194549435,"Country (fractions excl. non-operational)",0.362146192699895
+"Brazil","Latin America",8.4,2.9502,0.0286846059281519,0.0334655495920208,"Country (fractions excl. non-operational)",0.593541897193441
+"Tunisia","Africa",8.7,2.508384,0.0297090561398716,0.0284538164015428,"Country (fractions excl. non-operational)",0.112142312739384
+"Egypt","Africa",7.19,2.10565,0.0245526567408824,0.0238854092937559,"Country (fractions excl. non-operational)",0.0941372855271294
+"Senegal","Africa",5.7,1.86865,0.0194645540226745,0.0211970033371058,"Country (fractions excl. non-operational)",0.0835417275426925
+"Vietnam","East Asia",5.5,1.705,0.0187815872148614,0.0193406420088114,"Country (fractions excl. non-operational)",0.0453627557142439
+"Kazakhstan","Eastern Europe And Central Asia",6.7,1.352,0.0228793880617402,0.0153363917864593,"Country (fractions excl. non-operational)",0.222753109811352
+"Israel","West Asia",3.9,1.248,0.0133178527523562,0.014156669341347,"Country (fractions excl. non-operational)",0.148670542266273
+"Peru","Latin America",4,1.188,0.0136593361562628,0.0134760602383976,"Country (fractions excl. non-operational)",0.239010159943668
+"South Africa","Africa",2.8,1.04188,0.00956153530938396,0.0118185502030149,"Country (fractions excl. non-operational)",0.0465793246954649
+"Mexico","Latin America",2.9,0.8323,0.00990301871329053,0.00944118260641275,"Country (fractions excl. non-operational)",0.167447942862891
+"Syria","West Asia",2.6,0.804,0.00887856850157082,0.00912016197952163,"Country (fractions excl. non-operational)",0.0957781378061565
+"Togo","Africa",2,0.7194,0.0068296680781314,0.00816050314436301,"Country (fractions excl. non-operational)",0.0321622127173162
+"Australia","Oceania",2.2,0.5984,0.00751263488594454,0.0067879414534151,"Country (fractions excl. non-operational)",1
+"Algeria","Africa",1.6,0.4712,0.00546373446250512,0.00534505015516243,"Country (fractions excl. non-operational)",0.0210659363808721
+"Guinea-Bissau","Africa",1.3,0.4368,0.00443928425078541,0.00495483426947145,"Country (fractions excl. non-operational)",0.0195280157282788
+"Finland","West Europe",1,0.389,0.0034148340390657,0.00441261568412178,"Country (fractions excl. non-operational)",1
+"India","South Asia",1.5,0.38085,0.00512225105859855,0.00432016628097116,"Country (fractions excl. non-operational)",1
+"OCP (Morocco)","Africa",42.2,13.2159,0.259150085973962,0.261336521388814,"Company (fractions excl. non-operational and East Asia)",0.590843184668862
+"Mosaic (US, Peru)",NA,18,5.108,0.110537951363301,0.101007646187854,"Company (fractions excl. non-operational and East Asia)",NA
+"PhosAgro (Russia)","Eastern Europe And Central Asia",9.5,3.705,0.0583394743306313,0.0732641599698512,"Company (fractions excl. non-operational and East Asia)",0.610429195156108
+"Ma'aden","West Asia",10.32,3.3024,0.0633750921149595,0.0653029856638155,"Company (fractions excl. non-operational and East Asia)",0.393405127227676
+"Mosaic (Brazil)",NA,5,1.7432,0.0307049864898059,0.0344707378298096,"Company (fractions excl. non-operational and East Asia)",NA
+"China rest","East Asia",122.3,35.24686,0.389180588703262,0.37059056380594,"Complex",0.937768152418859
+"Khouribga","Africa",22.6,7.006,0.0719172633253779,0.0736620933048906,"Complex",0.313217211978757
+"Gantour","Africa",17,5.27,0.0540970564836913,0.0554095392116434,"Complex",0.235605867417649
+"Meskala","Africa",17,5.27,0.0540970564836913,0.0554095392116434,"Complex",0.235605867417649
+"Florida","North America",14,3.92,0.0445505171042164,0.0412154447266873,"Complex",0.529735814533005
+"Kola","Eastern Europe And Central Asia",9.5,3.705,0.030230708035004,0.0389549037531573,"Complex",0.610429195156108
+"Gafsa","Africa",8.7,2.508384,0.0276849642004773,0.0263735107411497,"Complex",0.112142312739384
+"Eshidiya","West Asia",6.365,2.0368,0.0202545743834527,0.0214152086273767,"Complex",0.24263794910893
+"Lao Cai","East Asia",5.5,1.705,0.0175019888623707,0.0179266156272964,"Complex",0.0453627557142439
+"Umm Wu’al","West Asia",5.3,1.696,0.0168655529037391,0.01783198833073,"Complex",0.202039454874678
+"Al Jalamid","West Asia",5.02,1.6064,0.0159745425616547,0.0168899210226914,"Complex",0.191365672352997
+"Aurora","North America",5.4,1.4499,0.0171837708830549,0.0152444574768428,"Complex",0.195934683033521
+"Negev","West Asia",3.9,1.248,0.0124105011933174,0.0131216517905372,"Complex",0.148670542266273
+"Bayovar","Latin America",4,1.188,0.0127287191726333,0.0124908031467614,"Complex",0.239010159943668
+"Lac a Paul","North America",3,1.158,0.00954653937947494,0.0121753788248734,"Complex",0.156488283987046
+"Phalaborwa","Africa",2.8,1.04188,0.00891010342084328,0.010954476416286,"Complex",0.0465793246954649
+"Kovdor","Eastern Europe And Central Asia",2.7,1.0125,0.00859188544152745,0.0106455708637171,"Complex",0.16681769503254
+"Boucraa","Africa",2.6,0.9399,0.00827366746221161,0.00988224400474831,"Complex",0.0420201052724569
+"Chilisai","Eastern Europe And Central Asia",5.2,0.884,0.0165473349244232,0.0092945033516305,"Complex",0.145646264107422
+"San Juan de la Costa","Latin America",2.9,0.8323,0.00922832140015911,0.008750922103577,"Complex",0.167447942862891
+"Central Jordan (Al Hassa and Al Abiad)","West Asia",2.565,0.8208,0.00816229116945107,0.0086300094468533,"Complex",0.0977794720289717
+"Nile Valley","Africa",2.5,0.74075,0.00795544948289578,0.00778835221461572,"Complex",0.0331167070758299
+"Red Sea","Africa",2.5,0.74075,0.00795544948289578,0.00778835221461572,"Complex",0.0331167070758299
+"Tapira","Latin America",2.1,0.7392,0.00668257756563246,0.00777205529131818,"Complex",0.148717432853838
+"Hahotoe-Kpogame","Africa",2,0.7194,0.00636435958631663,0.00756387523887215,"Complex",0.0321622127173162
+"Taiba-Tobene","Africa",2,0.663,0.00636435958631663,0.00697087751372288,"Complex",0.0296407381589945
+"Haikou","East Asia",2.2,0.63404,0.00700079554494829,0.00666638790166041,"Complex",0.0168690918668969
+"Abu Tartur","Africa",2.19,0.62415,0.00696897374701671,0.00656240301687803,"Complex",0.0279038713754697
+"White Springs","North America",2,0.6048,0.00636435958631663,0.00635895432926033,"Complex",0.0817306685279493
+"Smoky Canyon","North America",2,0.6,0.00636435958631663,0.00630848643775826,"Complex",0.0810820124285211
+"Phosphate Hill-Duchess","Oceania",2.2,0.5984,0.00700079554494829,0.00629166380725757,"Complex",1
+"Eastern Mines","West Asia",1.8,0.558,0.00572792362768496,0.00586689238711518,"Complex",0.0664728866863624
+"Salitre","Latin America",1.5,0.537,0.00477326968973747,0.00564609536179364,"Complex",0.108037420782617
+"Martison","North America",1.41,0.525648,0.00448687350835322,0.00552673879839126,"Complex",0.0710343294483788
+"Thies-Lam Lam","Africa",1.5,0.49725,0.00477326968973747,0.00522815813529216,"Complex",0.0222305536192459
+"Ouvidor","Latin America",1.4,0.49,0.00445505171042164,0.00515193059083591,"Complex",0.0985816316265969
+"Vernal","North America",1.6,0.48,0.0050914876690533,0.00504678915020661,"Complex",0.0648656099428169
+"Djebel Onk","Africa",1.6,0.4712,0.0050914876690533,0.00495426468245282,"Complex",0.0210659363808721
+"Karatau-EuroChem","Eastern Europe And Central Asia",1.5,0.468,0.00477326968973747,0.00492061942145144,"Complex",0.0771068457039295
+"Araxa/Patrocinio","Latin America",1.3,0.4524,0.00413683373110581,0.00475659877406973,"Complex",0.0910170003017805
+"Farim-Saliquinhe","Africa",1.3,0.4368,0.00413683373110581,0.00459257812668801,"Complex",0.0195280157282788
+"Siilinjarvi","West Europe",1,0.389,0.00318217979315831,0.00409000204047994,"Complex",1
+"Jhamarkotra","South Asia",1.5,0.38085,0.00477326968973747,0.00400431176636706,"Complex",1
+"Gadde Bissik","Africa",1,0.364,0.00318217979315831,0.00382714843890668,"Complex",0.0162733464402323
+"Catalao","Latin America",1,0.347,0.00318217979315831,0.00364840798983686,"Complex",0.0698118901518962
+"Conda","North America",1.13,0.345215,0.00359586316626889,0.00362964024268453,"Complex",0.0466512115341865
+"Matam-Ndendory","Africa",1.2,0.3444,0.00381861575178998,0.00362107121527324,"Complex",0.0153970893242198
+"Khneifiss","West Asia",0.8,0.246,0.00254574383452665,0.00258647943948089,"Complex",0.0293052511197942
+"Cajati","Latin America",0.6,0.2046,0.00190930787589499,0.00215119387527557,"Complex",0.0411628608791872
+"Ruseifa","West Asia",0.57,0.1824,0.00181384248210024,0.00191777987707851,"Complex",0.0217287715619937
+"Angico dos Dias","Latin America",0.5,0.18,0.00159108989657916,0.00189254593132748,"Complex",0.0362136605975254
+"Karatau-Kazphosphate","Eastern Europe And Central Asia",NA,NA,NA,NA,"Complex",NA
+"Karatau-Chulaktau","Eastern Europe And Central Asia",NA,NA,NA,NA,"Complex",NA
+"Capacity q17","World",1.25,NA,NA,NA,"Percentile",NA
+"Capacity_Content q17","World",NA,0.384925,NA,NA,"Percentile",NA
+"Capacity q50","World",2.19,NA,NA,NA,"Percentile",NA
+"Capacity_Content q50","World",NA,0.663,NA,NA,"Percentile",NA
+"Capacity q83","World",5.45,NA,NA,NA,"Percentile",NA
+"Capacity_Content q83","World",NA,1.7005,NA,NA,"Percentile",NA
