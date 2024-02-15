@@ -160,22 +160,17 @@ data <- mining_complexes %>%
   left_join(
     mineral %>% rename(G_Mineral = Value) %>% select(Name, G_Mineral), 
     by = c("Name")) %>%
+  mutate(Gain = G_PR - G_Ore) %>%
   mutate(Potential =  G_Mineral - G_PR) %>%
-  left_join(
-    recovery_mass %>% select(Name, Value) %>% rename(R_mass = Value), 
-    by = c("Name")) %>%
-  mutate(Waste = case_when(
-    R_mass < 1 ~ (G_Ore - G_PR * R_mass) / (1 - R_mass),
-    TRUE ~ 0)) %>%
   mutate(Capacity_Content = Capacity * G_PR / 100) %>%
   mutate(weight = Capacity_Content / sum(Capacity_Content, na.rm = TRUE)) %>%
-  select(-c(G_PR, R_mass, Country)) %>%
+  select(-c(G_PR, Country)) %>%
   melt(id.vars = c("Name", "Label", "Capacity", "Capacity_Content", "weight"))
 
 xmax <- data %>% pull(value) %>% max()
 
 data <- data %>%
-  filter(variable %in% c("Potential", "Waste"))
+  filter(variable %in% c("Gain", "Potential"))
 
 companies <- data %>%
   filter(!is.na(Label)) %>%

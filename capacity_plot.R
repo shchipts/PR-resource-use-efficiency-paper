@@ -22,18 +22,18 @@ plot_capacity <- function(data_company, data_world, xmax_) {
     mutate(
       variable = case_when(
         variable == "Capacity" ~ "bold(Volume)",
-        TRUE ~ "bold(Value*','~\"%\"*P[2]*O[5])"))
+        TRUE ~ "bold(Value*','~P[2]*O[5])"))
   data_world <- data_world %>%
     mutate(
       variable = case_when(
         variable == "Capacity" ~ "bold(Volume)",
-        TRUE ~ "bold(Value*','~\"%\"*P[2]*O[5])"))
+        TRUE ~ "bold(Value*','~P[2]*O[5])"))
   data_company$variable = factor(
     data_company$variable, 
-    levels = c("bold(Volume)", "bold(Value*','~\"%\"*P[2]*O[5])"))
+    levels = c("bold(Volume)", "bold(Value*','~P[2]*O[5])"))
   data_world$variable = factor(
     data_world$variable, 
-    levels = c("bold(Volume)", "bold(Value*','~\"%\"*P[2]*O[5])"))
+    levels = c("bold(Volume)", "bold(Value*','~P[2]*O[5])"))
   
   area <- data_world %>%
     group_by(variable) %>%
@@ -123,7 +123,7 @@ plot_capacity <- function(data_company, data_world, xmax_) {
       hjust = 0.1, 
       vjust = -0.8) +
     scale_x_continuous(
-      expand = expansion(mult = c(0, 0), add = c(0.1, 0))) +
+      expand = expansion(mult = c(0, 0), add = c(0.2, 0))) +
     scale_y_continuous(
       breaks = data_company %>% pull(y) - 0.5,
       labels = data_company %>% pull(Label),
