@@ -48,7 +48,11 @@ plot_grades <- function(data) {
         hjust = 0.5, 
         face = "bold",
         margin = margin(b = 20)),
-      strip.text.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+      strip.text.y = element_text(
+        size = 24, 
+        hjust = 0.5, 
+        face = "bold",
+        margin = margin(l = 20)),
       strip.placement = "outside",
       panel.spacing.x = unit(7, "lines"),
       panel.spacing.y = unit(2, "lines"),
@@ -63,7 +67,7 @@ plot_grades <- function(data) {
         fill = group),
       color = "black") +
     scale_x_continuous(
-      expand = expansion(mult = c(0, 0), add = c(0.05, 2))) +
+      expand = expansion(mult = c(0, 0), add = c(0.05, 0))) +
     scale_y_continuous(
       breaks = ybreaks,
       labels = ylabels,
@@ -74,8 +78,7 @@ plot_grades <- function(data) {
     facet_grid(
       Rock_type ~ cat,
       scales = "free_y",
-      space = "free_y",
-      switch = "y")
+      space = "free_y")
   
   png(
     filename = "bin/grades.jpg",
