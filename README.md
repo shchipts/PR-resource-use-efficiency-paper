@@ -5,6 +5,7 @@ Contains routines for paper "Resource use efficiency in global phosphate rock pr
 1. `capacity.R capacity-plot.R`: production capacity of phosphate mining and beneficiation complexes in "Results and Analysis" section
     * summary stats - bin/capacity summary.csv
     * Figure 1. Production capacity of phosphate mining and beneficiation complexes (global vs major companies) - bin/capacities.jpg
+
 2. `grades_recoveries.R grades_plot.R grades_efficiency_plot.R`: P2O2 of ore, PR, and waste in "Results and Analysis" section
     * summary stats - bin/grades & recoveries summary.csv
     * Figure 2. P2O5 grades from phosphate mining and beneficiation - bin/grades.jpg
