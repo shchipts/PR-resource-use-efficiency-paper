@@ -1,5 +1,6 @@
 library(dplyr)
 library(phosphateRock)
+library(reshape2)
 
 data <- mining_complexes %>%
   select(Name, Region, Country, Rock_type, Capacity, Status) %>%

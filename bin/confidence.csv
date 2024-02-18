@@ -1,0 +1,15 @@
+"Category","Confidence","Count","Frequency"
+"Mass recovery","High",19,0.365384615384615
+"Mass recovery","Low",18,0.346153846153846
+"Mass recovery","Medium",15,0.288461538461538
+"Mineral","Low",17,0.326923076923077
+"Mineral","Standard",35,0.673076923076923
+"Mineral recovery","High",11,0.211538461538462
+"Mineral recovery","Low",27,0.519230769230769
+"Mineral recovery","Medium",14,0.269230769230769
+"Ore","High",15,0.288461538461538
+"Ore","Low",25,0.480769230769231
+"Ore","Medium",12,0.230769230769231
+"PR","High",29,0.557692307692308
+"PR","Low",10,0.192307692307692
+"PR","Medium",13,0.25
