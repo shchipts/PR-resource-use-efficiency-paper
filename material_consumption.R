@@ -4,14 +4,13 @@ library(spatstat.geom)
 library(reshape2)
 
 # GHG emissions (????2-eq), kg per tonne of ore
-# Representative points: PhosAgro (Russia) & OCP (Morocco)
+# Representative points: PhosAgro (Russia) and OCP (Morocco)
 # details on data in emissions.xlsx
 co2_ore_ign <- 17.146 # source: PhosAgro annual reports
 co2_ore_sed <- 46.643 # source: OCP annual reports and factsheets
 
 
 data <- mining_complexes %>%
-  filter(Status == "operational") %>%
   select(Name, Region, Country, Rock_type, Capacity) %>%
   left_join(
     ore %>% mutate(G_Ore = Value / 100) %>% select(Name, G_Ore), 
@@ -82,14 +81,6 @@ data_regions <- data %>%
   as.data.frame() %>%
   rename(Id = Region)
 
-data_regions_rock <- data %>%
-  group_by(variable, Region, Rock_type) %>%
-  group_modify(~ stats(.x)) %>%
-  ungroup() %>%
-  as.data.frame() %>%
-  mutate(Id = paste(Region, " - ", Rock_type, sep = "")) %>%
-  select(-c(Region, Rock_type))
-
 data_rock <- data %>%
   group_by(variable, Rock_type) %>%
   group_modify(~ stats(.x)) %>%
@@ -98,7 +89,7 @@ data_rock <- data %>%
   mutate(Id = paste("World", " - ", Rock_type, sep = "")) %>%
   select(-Rock_type)
 
-data_complex <- data %>%
+data_company <- data %>%
   mutate(
     Company = case_when(
       Name %in% c("Khouribga", "Gantour", "Boucraa") ~ "OCP (Morocco)",
@@ -117,10 +108,9 @@ data_complex <- data %>%
 
 output <- data_world %>%
   rbind(data_regions) %>%
-  rbind(data_regions_rock) %>%
   rbind(data_rock) %>%
   arrange(Id) %>%
-  rbind(data_complex) %>%
+  rbind(data_company) %>%
   select(Id, everything())
 
 write.csv(

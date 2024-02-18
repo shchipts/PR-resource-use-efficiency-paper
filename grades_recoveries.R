@@ -49,7 +49,9 @@ stats <- function(d, y= NA) {
       weight = sum(weight, na.rm = TRUE),
       median = weighted.median(value, ws),
       q17 = weighted.quantile(value, ws, probs = c(0.17)),
-      q83 = weighted.quantile(value, ws, probs = c(0.83)))
+      q83 = weighted.quantile(value, ws, probs = c(0.83)),
+      q05 = weighted.quantile(value, ws, probs = c(0.05)),
+      q95 = weighted.quantile(value, ws, probs = c(0.95)))
 }
 
 world <- data %>%
