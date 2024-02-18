@@ -13,8 +13,9 @@ Contains routines for paper "Resource use efficiency in global phosphate rock pr
 3. `grades_recoveries.R recovery_plot.R`: mass and mineral in "Results and Analysis" section
     * summary stats - bin/grades & recoveries summary.csv
     * Figure 4. Recovery rates from phosphate beneficiation (global vs major companies) - bin/recoveries.jpg		
-4. `material_consumption.R emissions.xlsx`: production of PR, ore, waste, and emissions for 1 tonne of P2O2 in "Results and Analysis" section
+4. `material_consumption.R emissions.xlsx materials_plot.R`: production of PR, ore, waste, and emissions for 1 tonne of P2O2 in "Results and Analysis" section
     * summary stats - bin/material consumption.csv
+	* Figure 5. Material consumption for the production of 1 tonne of P2O5 from phosphate beneficiation (global by rock type vs major companies) - bin/materials.jpg
 
 Based on ["Global dataset on phosphate mining and beneficiation"](https://github.com/shchipts/phosphate-rock.git) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10670030.svg)](https://doi.org/10.5281/zenodo.10670030)
 
