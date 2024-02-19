@@ -158,10 +158,6 @@ data <- mining_complexes %>%
       Country == "Saudi Arabia" ~ "Ma'aden",
       Name %in% c("Haikou") ~ "YPH-Haikou (China)",
       TRUE ~ NA)) %>%
-  mutate(
-    Rock_type = case_when(
-      Rock_type == "igneous" ~ "Igneous",
-      TRUE ~ "Sedimentary")) %>%
   left_join(
     ore %>% mutate(G_Ore = Value / 100) %>% select(Name, G_Ore), 
     by = c("Name")) %>%
@@ -175,17 +171,21 @@ data <- mining_complexes %>%
     recovery_mineral %>% select(Name, Value) %>% rename(R_mineral = Value), 
     by = c("Name")) %>%
   mutate(
-    PR = 1 / G_PR,
     Ore = 1 / (G_PR * R_mass),
     Waste = (1 - R_mass) / (G_PR * R_mass),
-    P2O5_Loss = 1 / R_mineral - 1) %>%
+    P2O5_Loss_Mass = 1 / R_mineral - 1) %>%
+  mutate(P2O5_Loss_Frac = P2O5_Loss_Mass / (1 + P2O5_Loss_Mass)) %>%
   mutate(
     GHG_kg = Ore * case_when(
       Rock_type == "sedimentary" ~ co2_ore_sed,
       TRUE ~ co2_ore_ign)) %>%
   mutate(Capacity_Content = Capacity * G_PR / 100) %>%
   mutate(weight = Capacity_Content / sum(Capacity_Content, na.rm = TRUE)) %>%
-  select(-c(G_Ore, G_PR, R_mass, R_mineral, Country, Capacity)) %>%
+  mutate(
+    Rock_type = case_when(
+      Rock_type == "igneous" ~ "Igneous",
+      TRUE ~ "Sedimentary")) %>%
+  select(-c(G_Ore, G_PR, R_mass, R_mineral, Country, Capacity, P2O5_Loss_Mass)) %>%
   melt(id.vars = c("Name", "Label", "Rock_type", "Capacity_Content", "weight")) %>%
   group_by(variable) %>%
   mutate(
@@ -195,15 +195,14 @@ data <- mining_complexes %>%
   ungroup() %>%
   mutate(
     x = case_when(
-      variable == "PR" ~ 1,
-      variable == "P2O5_Loss" ~ 2,
-      variable == "Ore" ~ 3,
-      variable == "Waste" ~ 4,
-      TRUE ~ 5)) %>%
+      variable == "P2O5_Loss_Frac" ~ 3,
+      variable == "Ore" ~ 1,
+      variable == "Waste" ~ 2,
+      TRUE ~ 4)) %>%
   as.data.frame() %>%
   mutate(
     variable = case_when(
-      variable == "P2O5_Loss" ~ "P loss",
+      variable == "P2O5_Loss_Frac" ~ "P loss",
       variable == "GHG_kg" ~ "GHG",
       TRUE ~ variable))
 

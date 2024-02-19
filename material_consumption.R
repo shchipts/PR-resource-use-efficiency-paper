@@ -28,7 +28,8 @@ data <- mining_complexes %>%
     PR = 1 / G_PR,
     Ore = 1 / (G_PR * R_mass),
     Waste = (1 - R_mass) / (G_PR * R_mass),
-    P2O5_Loss = 1 / R_mineral - 1) %>%
+    P2O5_Loss_Mass = 1 / R_mineral - 1) %>%
+  mutate(P2O5_Loss_Frac = P2O5_Loss_Mass / (1 + P2O5_Loss_Mass)) %>%
   mutate(
     GHG_kg = Ore * case_when(
       Rock_type == "sedimentary" ~ co2_ore_sed,
@@ -37,7 +38,7 @@ data <- mining_complexes %>%
   mutate(Capacity_Content = Capacity * G_PR) %>%
   mutate(weight = Capacity_Content / sum(Capacity_Content)) %>%
   arrange(desc(weight)) %>%
-  select(-c(G_Ore, G_PR, R_mass, R_mineral)) %>%
+  select(-c(G_Ore, G_PR, R_mass, R_mineral, P2O5_Loss_Mass)) %>%
   melt(id.vars = c(
     "Name",
     "Region",
@@ -46,7 +47,6 @@ data <- mining_complexes %>%
     "Capacity",
     "Capacity_Content",
     "weight"))
-
 
 stats <- function(d) {
   
