@@ -15,7 +15,7 @@ library(reshape2)
 library(tidyr)
 
 
-plot_materials <- function(data, companies, scales, boxes) {
+plot_materials <- function(data, companies, scales, boxes, bars) {
   
   plot <- ggplot() +
     theme_ipsum(base_family = "Segoe UI") +
@@ -78,6 +78,11 @@ plot_materials <- function(data, companies, scales, boxes) {
         ymax = q83),
       fill = "gray20",
       alpha = 0.5) +
+    geom_segment(
+      data = bars,
+      aes(x = x, y = q17, xend = x, yend = q83),
+      color = "#8c510a",
+      size = 4) +
     geom_line(
       data = data,
       aes(x = x, y = y, group = Name),
@@ -95,7 +100,14 @@ plot_materials <- function(data, companies, scales, boxes) {
         y = q50,
         yend = q50),
       color = "black", 
-      size = 2) +
+      size = 3) +
+    geom_point(
+      data = bars,
+      aes(x = x, y = q50),
+      shape = 21,
+      color = "black",
+      fill = "grey80",
+      size = 5) +
     geom_text(
       data = scales %>% filter(y == 0),
       aes(x = x, y = 0, label = ylabel),
@@ -134,7 +146,7 @@ plot_materials <- function(data, companies, scales, boxes) {
     units = "in",
     width = 12,
     height = 16,
-    res = 1000)
+    res = 300)
   
   print(plot)
   dev.off()
@@ -245,7 +257,7 @@ scales <- data %>%
   ungroup() %>%
   as.data.frame()
 
-boxes <- data %>%
+bars <- data %>%
   group_by(Rock_type, variable, x) %>%
   group_modify(~ {
     
@@ -270,4 +282,29 @@ boxes <- data %>%
   ungroup() %>%
   as.data.frame()
 
-plot_materials(data, companies, scales, boxes)
+boxes <- data %>%
+  group_by(variable, x) %>%
+  group_modify(~ {
+    
+    ymin <- .x %>% slice(1) %>% pull(ymin)
+    ymax <- .x %>% slice(1) %>% pull(ymax)
+    
+    ws <- .x %>% pull(weight)
+    
+    if (all(is.na(ws))) {
+      ws <- rep(1, length(ws))
+    }
+    
+    q50 <- (weighted.median(.x %>% pull(value), ws) - ymin) / (ymax - ymin)
+    q17 <- (weighted.quantile(.x %>% pull(value), ws, probs = c(0.17)) - ymin) / (ymax - ymin)
+    q83 <- (weighted.quantile(.x %>% pull(value), ws, probs = c(0.83)) - ymin) / (ymax - ymin)
+    
+    return (data.frame(
+      q50 = q50,
+      q17 = q17,
+      q83 = q83))
+  }) %>%
+  ungroup() %>%
+  as.data.frame()
+
+plot_materials(data, companies, scales, boxes, bars)

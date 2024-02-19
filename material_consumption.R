@@ -3,7 +3,7 @@ library(phosphateRock)
 library(spatstat.geom)
 library(reshape2)
 
-# GHG emissions (????2-eq), kg per tonne of ore
+# GHG emissions (CO2-eq), kg per tonne of ore
 # Representative points: PhosAgro (Russia) and OCP (Morocco)
 # details on data in emissions.xlsx
 co2_ore_ign <- 17.146 # source: PhosAgro annual reports
